@@ -1,11 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import {
-  selectCartItems,
-  selectCartTotal,
-} from '../../store/cart/cart.selector';
+import { selectCartItems, selectCartTotal } from 'STORE/cart/cart.selector';
 
-import CheckoutItem from '../../components/checkout-item/checkout-item.component';
+import CheckoutItem from 'COMPONENTS/checkout-item/checkout-item.component';
 
 import {
   CheckoutContainer,
@@ -37,7 +34,7 @@ const Checkout = () => {
           <span>Remove</span>
         </HeaderBlock>
       </CheckoutHeader>
-      {cartItems.map((cartItem) => (
+      {cartItems.map(cartItem => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <Total>Total: ${cartTotal}</Total>
