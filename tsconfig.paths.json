@@ -7,6 +7,8 @@
       "ROUTES/*": [ "src/routes/*" ],
       "STORE/*": [ "src/store/*" ],
       "UTILS/*": [ "src/utils/*" ],
+      "CONTEXTS/*": [ "src/contexts/*" ],
+      "HOOKS/*": [ "src/hooks/*" ],
       "ASSETS/*": [ "src/assets/*" ]
     }
   }

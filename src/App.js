@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Routes, Route } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 import {
   onAuthStateChangedListener,
@@ -13,12 +13,15 @@ import Authentication from './routes/authentication/authentication.component';
 import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
 import { setCurrentUser } from './store/user/user.reducer';
+import ColorModeContext from 'CONTEXTS/colorMode.context';
+import useColorMode from 'HOOKS/useColorMode.hooks';
 
 const App = () => {
   const dispatch = useDispatch();
+  const { colorModeHooksValue, theme } = useColorMode();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
+    const unsubscribe = onAuthStateChangedListener(user => {
       if (user) {
         createUserDocumentFromAuth(user);
       }
@@ -33,14 +36,19 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path='/' element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path='shop/*' element={<Shop />} />
-        <Route path='auth' element={<Authentication />} />
-        <Route path='checkout' element={<Checkout />} />
-      </Route>
-    </Routes>
+    <ColorModeContext.Provider value={colorModeHooksValue}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Routes>
+          <Route path="/" element={<Navigation />}>
+            <Route index element={<Home />} />
+            <Route path="shop/*" element={<Shop />} />
+            <Route path="auth" element={<Authentication />} />
+            <Route path="checkout" element={<Checkout />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 };
 
