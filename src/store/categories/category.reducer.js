@@ -9,6 +9,7 @@ export const CATEGORIES_INITIAL_STATE = {
 
 export const getCategoryItems = createAsyncThunk(
   'categories/getCategoryItems',
+  // 第一個參數是呼叫它的payload
   async (data, { rejectWithValue }) => {
     console.log('aaa', data);
     try {
